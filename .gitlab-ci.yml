@@ -1,0 +1,8 @@
+stages:
+  - build
+  - deploy
+
+1.Deploy:
+  stage: deploy
+  script:
+    - aws s3 sync  .  s3://nixanweb/
