@@ -10,17 +10,10 @@ phases:
   pre_build:
     commands:
       - echo Pre-build phase started...
-  build:
-    commands:
-      - echo Building the project...
-      - # Add any build commands here, e.g., npm install, mvn package, etc.
-      - # For example, a simple npm build:
-      - npm install
-      - npm run build
   post_build:
     commands:
       - echo Build complete, pushing files to S3...
-      - aws s3 sync ./build/ s3://your-bucket-name/path/to/your/destination/ --delete
+      - aws s3 sync . s3://profile2.0 --delete
       - echo Files successfully uploaded to S3!
 
 artifacts:
