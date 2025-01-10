@@ -6,7 +6,7 @@ phases:
       docker: 20
     commands:
       - echo Installing AWS CLI...
-      - yum install -y aws-cli
+      - apt-get install -y aws-cli
   pre_build:
     commands:
       - echo Pre-build phase started...
