@@ -5,22 +5,23 @@ phases:
     runtime-versions:
       docker: 20
     commands:
-      - echo Installing Docker...
-      - yum update -y
-      - yum install -y docker
-      - service docker start
-      - usermod -aG docker $USER
+      - echo Installing AWS CLI...
+      - yum install -y aws-cli
   pre_build:
     commands:
-      - echo Docker is installed and running
+      - echo Pre-build phase started...
   build:
     commands:
-      - echo Building Docker image...
-      - docker build -t my-app .
+      - echo Building the project...
+      - # Add any build commands here, e.g., npm install, mvn package, etc.
+      - # For example, a simple npm build:
+      - npm install
+      - npm run build
   post_build:
     commands:
-      - echo Docker image built successfully
-      - docker images
+      - echo Build complete, pushing files to S3...
+      - aws s3 sync ./build/ s3://your-bucket-name/path/to/your/destination/ --delete
+      - echo Files successfully uploaded to S3!
 
 artifacts:
   files:
