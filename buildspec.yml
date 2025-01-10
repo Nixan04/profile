@@ -9,7 +9,7 @@ phases:
       - apt-get install -y aws-cli
   pre_build:
     commands:
-      - echo Pre-build phase started...
+      - echo Pre-build phase started..
   post_build:
     commands:
       - echo Build complete, pushing files to S3...
