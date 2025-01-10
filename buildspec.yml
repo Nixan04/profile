@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 20
+    commands:
+      - echo Installing Docker...
+      - yum update -y
+      - yum install -y docker
+      - service docker start
+      - usermod -aG docker $USER
+  pre_build:
+    commands:
+      - echo Docker is installed and running
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t my-app .
+  post_build:
+    commands:
+      - echo Docker image built successfully
+      - docker images
+
+artifacts:
+  files:
+    - '**/*'
